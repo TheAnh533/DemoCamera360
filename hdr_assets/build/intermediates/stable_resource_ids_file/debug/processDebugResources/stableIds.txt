@@ -1,0 +1,3 @@
+com.example.camera360:string/title_hdr_assets = 0x7e010002
+com.example.camera360:string/downloading_hdr_assets = 0x7e010001
+com.example.camera360:string/download_failed = 0x7e010000

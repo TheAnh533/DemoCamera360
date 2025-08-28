@@ -1,0 +1,2 @@
+-keep class com.example.hdr_assets.HdrAssetsActivity { <init>(); }
+-keep class com.example.hdr_assets.HdrAssetsProvider { <init>(); }

@@ -1,0 +1,5 @@
+R_DEF: Internal format may change without notice
+local
+string download_failed
+string downloading_hdr_assets
+string title_hdr_assets

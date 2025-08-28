@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Camera360</string>
+    <string name="title_data_360">data camera 360</string>
+    
+    <!-- HDR Assets Module Strings -->
+    <string name="title_hdr_assets">HDR Assets</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_failed">Failed to download HDR assets</string>
+    <string name="downloading_hdr_assets">Downloading HDR assets…</string>
+    <string name="title_hdr_assets">HDR Assets</string>
+</resources>

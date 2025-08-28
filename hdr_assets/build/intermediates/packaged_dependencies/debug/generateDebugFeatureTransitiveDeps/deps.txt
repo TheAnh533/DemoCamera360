@@ -1,0 +1,1 @@
+:hdr_assets::debug;Capability: group='Camera360', name='hdr_assets'

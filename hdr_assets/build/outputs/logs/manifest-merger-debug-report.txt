@@ -1,0 +1,71 @@
+-- Merging decision tree log ---
+provider#com.example.hdr_assets.HdrAssetsProvider
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:19:9-23:50
+	android:grantUriPermissions
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:23:13-47
+	android:authorities
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:21:13-62
+	android:exported
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:22:13-37
+	android:name
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:20:13-46
+manifest
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:2:1-34:12
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:2:1-34:12
+	package
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:5:5-37
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:4:5-51
+	xmlns:dist
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:3:5-61
+	android:versionCode
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:2:11-69
+dist:module
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:7:5-15:19
+	dist:instant
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:8:9-29
+	dist:title
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:9:9-46
+	android:label
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:10:9-49
+dist:delivery
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:11:9-13:25
+dist:install-time
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:12:13-34
+dist:fusing
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:14:9-44
+	dist:include
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:14:22-41
+application
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:17:5-32:19
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:17:5-32:19
+	android:extractNativeLibs
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+activity#com.example.hdr_assets.HdrAssetsActivity
+ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:26:9-31:45
+	android:label
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:29:13-53
+	android:exported
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:28:13-37
+	android:theme
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:30:13-51
+	tools:replace
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:31:13-42
+	android:name
+		ADDED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:27:13-46
+uses-sdk
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml

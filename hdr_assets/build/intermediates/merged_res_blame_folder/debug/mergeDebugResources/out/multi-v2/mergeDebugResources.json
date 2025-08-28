@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.hdr_assets-debug-4:/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,3,2",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "186,111,55",
+                        "endColumns": "73,74,55",
+                        "endOffsets": "255,181,106"
+                    },
+                    "to": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,129,204",
+                        "endColumns": "73,74,55",
+                        "endOffsets": "124,199,255"
+                    }
+                }
+            ]
+        }
+    ]
+}

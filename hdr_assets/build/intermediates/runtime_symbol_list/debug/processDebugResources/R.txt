@@ -1,0 +1,3 @@
+int string download_failed 0x7e010000
+int string downloading_hdr_assets 0x7e010001
+int string title_hdr_assets 0x7e010002

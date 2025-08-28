@@ -1,0 +1,64 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:dist="http://schemas.android.com/apk/distribution"
+4    featureSplit="hdr_assets"
+5    package="com.example.camera360"
+6    android:versionCode="1"
+7    android:versionName="1.0" >
+8
+9    <uses-sdk
+10        android:minSdkVersion="24"
+11        android:targetSdkVersion="24" />
+12
+13    <dist:module
+13-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:7:5-15:19
+14        android:label="@string/title_hdr_assets"
+14-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:10:9-49
+15        dist:instant="false"
+15-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:8:9-29
+16        dist:title="@string/title_hdr_assets" >
+16-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:9:9-46
+17        <dist:delivery>
+17-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:11:9-13:25
+18            <dist:install-time />
+18-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:12:13-34
+19        </dist:delivery>
+20
+21        <dist:fusing dist:include="true" />
+21-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:14:9-44
+21-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:14:22-41
+22    </dist:module>
+23
+24    <application
+24-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:17:5-32:19
+25        android:debuggable="true"
+26        android:extractNativeLibs="false"
+27        android:testOnly="true" >
+28
+29        <!-- Content Provider for accessing HDR assets -->
+30        <provider
+31            android:name="com.example.hdr_assets.HdrAssetsProvider"
+31-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:20:13-46
+32            android:authorities="com.example.camera360.hdr_assets"
+32-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:21:13-62
+33            android:exported="false"
+33-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:22:13-37
+34            android:grantUriPermissions="true"
+34-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:23:13-47
+35            android:splitName="hdr_assets" />
+36
+37        <!-- This activity is only used for testing the dynamic feature -->
+38        <activity
+38-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:26:9-31:45
+39            android:name="com.example.hdr_assets.HdrAssetsActivity"
+39-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:27:13-46
+40            android:exported="false"
+40-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:28:13-37
+41            android:label="@string/title_hdr_assets"
+41-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:29:13-53
+42            android:splitName="hdr_assets"
+43            android:theme="@style/Theme.Camera360" />
+43-->/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/src/main/AndroidManifest.xml:30:13-51
+44    </application>
+45
+46</manifest>

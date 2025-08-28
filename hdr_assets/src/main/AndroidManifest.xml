@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.hdr_assets">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_hdr_assets"
+        android:label="@string/title_hdr_assets">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
+        <!-- Content Provider for accessing HDR assets -->
+        <provider
+            android:name=".HdrAssetsProvider"
+            android:authorities="${applicationId}.hdr_assets"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+            
+        <!-- This activity is only used for testing the dynamic feature -->
+        <activity
+            android:name=".HdrAssetsActivity"
+            android:exported="false"
+            android:label="@string/title_hdr_assets"
+            android:theme="@style/Theme.Camera360"
+            tools:replace="android:label" />
+    </application>
+
+</manifest>

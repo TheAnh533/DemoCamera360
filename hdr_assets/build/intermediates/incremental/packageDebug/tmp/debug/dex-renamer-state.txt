@@ -1,0 +1,7 @@
+#Thu Aug 28 14:35:08 ICT 2025
+base.0=/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.1=/Users/theanh/AndroidStudioProjects/Camera360/hdr_assets/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+path.0=0/classes.dex
+path.1=7/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
