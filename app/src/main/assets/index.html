@@ -5,25 +5,36 @@
     <title>360° HDRI Viewer</title>
     <style>
         body { margin: 0; overflow: hidden; background: black; }
-        #info { position: absolute; top: 10px; width: 100%; text-align: center;
-          color: white; font-family: Arial, sans-serif; text-shadow: 1px 1px 2px black; }
-        #controls { position: absolute; bottom: 20px; width: 100%; text-align: center; }
-        button { margin: 0 5px; padding: 8px 15px; background: rgba(0,0,0,0.5); color: white;
-          border: 1px solid white; border-radius: 6px; cursor: pointer; }
-        button:hover { background: rgba(255,255,255,0.25); }
-        #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-          color: white; font-size: 18px; font-family: Arial, sans-serif;
-          background: rgba(0,0,0,0.6); padding: 10px 20px; border-radius: 6px; display: none; }
+        #info {
+          position: absolute; top: 10px; width: 100%;
+          text-align: center; color: white; font-family: Arial, sans-serif;
+          pointer-events: none; font-size: 16px;
+        }
+        #loading {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          color: white; font-family: Arial; font-size: 18px;
+          background: rgba(0,0,0,0.6); padding: 10px 20px; border-radius: 6px;
+          display: none;
+        }
+        #controls {
+          position: absolute; bottom: 15px; width: 100%; text-align: center;
+        }
+        #controls button {
+          padding: 8px 14px; margin: 0 5px; border: none; border-radius: 6px;
+          font-size: 14px; cursor: pointer;
+          background: rgba(255,255,255,0.2); color: white;
+        }
     </style>
 </head>
 <body>
 <div id="info">360° HDRI Viewer</div>
-<div id="controls">
-    <button id="prevBtn">Previous</button>
-    <button id="nextBtn">Next</button>
-    <button id="toggleAutoRotate">Auto-rotate: Off</button>
-</div>
 <div id="loading">Loading HDRI...</div>
+<div id="controls">
+    <button onclick="prevHDRI()">⏮ Prev</button>
+    <button onclick="nextHDRI()">Next ⏭</button>
+    <button onclick="toggleRotate()">⏯ Rotate</button>
+</div>
 
 <!-- Three.js -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
@@ -31,90 +42,108 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/RGBELoader.js"></script>
 
 <script>
-    let hdriList = [
-      "file:///android_asset/ex.hdr"
-    ];
+    let hdriList = [];
+    let currentIndex = 0;
+    let scene, camera, renderer, controls, sphere;
+    let autoRotate = false;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Setup scene
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.outputEncoding = THREE.sRGBEncoding;
     document.body.appendChild(renderer.domElement);
 
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    camera.position.set(0, 0, 5);
 
-    let sphere, currentHdriIndex = 0, autoRotate = false;
-
-    function loadHDRI(index) {
-      if (index < 0 || index >= hdriList.length) return;
+    function loadHDRI(url) {
       document.getElementById('loading').style.display = "block";
 
-      if (sphere) { scene.remove(sphere); sphere.geometry.dispose(); sphere.material.dispose(); }
+      if (sphere) {
+        scene.remove(sphere);
+        sphere.geometry.dispose();
+        sphere.material.dispose();
+      }
 
       new THREE.RGBELoader()
-        .load(hdriList[index], function(texture) {
-          texture.mapping = THREE.EquirectangularReflectionMapping;
-          const geometry = new THREE.SphereGeometry(500, 60, 40);
-          geometry.scale(-1, 1, 1);
-          const material = new THREE.MeshBasicMaterial({ map: texture });
-          sphere = new THREE.Mesh(geometry, material);
-          scene.add(sphere);
+        .setDataType(THREE.UnsignedByteType) // quan trọng để load content://
+        .load(url,
+          function(texture) {
+            texture.mapping = THREE.EquirectangularReflectionMapping;
 
-          camera.position.set(0, 0, 5);
-          controls.update();
+            const geometry = new THREE.SphereGeometry(500, 60, 40);
+            geometry.scale(-1, 1, 1);
+            const material = new THREE.MeshBasicMaterial({ map: texture });
 
-          document.getElementById('info').textContent =
-            `360° HDRI Viewer - ${hdriList[index].split('/').pop()} (${index+1}/${hdriList.length})`;
+            sphere = new THREE.Mesh(geometry, material);
+            scene.add(sphere);
 
-          document.getElementById('loading').style.display = "none";
-        },
-        undefined,
-        function(err) {
-          console.error("HDR load error:", err);
-          document.getElementById('loading').textContent = "Failed to load HDRI!";
-        });
+            document.getElementById('info').textContent =
+              `360° HDRI Viewer - ${url.split('/').pop()} (${currentIndex+1}/${hdriList.length})`;
+
+            document.getElementById('loading').style.display = "none";
+          },
+          undefined,
+          function(err) {
+            console.error("HDR load error:", err);
+            document.getElementById('loading').textContent = "Load failed!";
+          }
+        );
     }
-
-    function nextHDRI() { currentHdriIndex = (currentHdriIndex+1) % hdriList.length; loadHDRI(currentHdriIndex); }
-    function prevHDRI() { currentHdriIndex = (currentHdriIndex-1+hdriList.length) % hdriList.length; loadHDRI(currentHdriIndex); }
-
-    document.getElementById('nextBtn').addEventListener('click', nextHDRI);
-    document.getElementById('prevBtn').addEventListener('click', prevHDRI);
-    document.getElementById('toggleAutoRotate').addEventListener('click', function() {
-      autoRotate = !autoRotate;
-      this.textContent = `Auto-rotate: ${autoRotate ? "On" : "Off"}`;
-    });
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth/window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
 
     function animate() {
       requestAnimationFrame(animate);
-      if (autoRotate && sphere) sphere.rotation.y += 0.002;
+      if (autoRotate && sphere) {
+        sphere.rotation.y += 0.002;
+      }
       controls.update();
       renderer.render(scene, camera);
     }
+    animate();
 
-    // API từ Android
+    // Navigation
+    function nextHDRI() {
+      if (hdriList.length === 0) return;
+      currentIndex = (currentIndex + 1) % hdriList.length;
+      loadHDRI(hdriList[currentIndex]);
+    }
+
+    function prevHDRI() {
+      if (hdriList.length === 0) return;
+      currentIndex = (currentIndex - 1 + hdriList.length) % hdriList.length;
+      loadHDRI(hdriList[currentIndex]);
+    }
+
+    function toggleRotate() {
+      autoRotate = !autoRotate;
+    }
+
+    // Called from Android
     function setHDRList(listJson) {
       try {
-        hdriList = JSON.parse(listJson);
-        currentHdriIndex = 0;
-        loadHDRI(currentHdriIndex);
-      } catch(e) {
-        console.error("Invalid HDR list from Android:", e);
+        hdriList = typeof listJson === "string" ? JSON.parse(listJson) : listJson;
+        if (hdriList.length > 0) {
+          currentIndex = 0;
+          loadHDRI(hdriList[currentIndex]);
+        } else {
+          alert("No HDR files found!");
+        }
+      } catch (e) {
+        console.error("Error parsing HDR list:", e);
       }
     }
 
-    loadHDRI(0);
-    animate();
+    // resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 </script>
 </body>
 </html>

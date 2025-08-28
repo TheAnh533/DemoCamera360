@@ -83,14 +83,9 @@ class HdrDynamicFeatureHelper(private val context: Context) {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getHdrFilesFromDynamicModule(): List<String> {
         return try {
-            // Get the list of HDR files from the dynamic feature module's assets
-            val packageManager = context.packageManager
-            val packageInfo = packageManager.getPackageInfo("${context.packageName}", 0)
-            val appInfo = packageInfo.applicationInfo
-
             // Create a context for the dynamic feature module
             val featureContext = context.createPackageContext(
-                "${context.packageName}",
+                context.packageName,
                 Context.CONTEXT_INCLUDE_CODE or Context.CONTEXT_IGNORE_SECURITY
             ).createContextForSplit("hdr_assets")
 
@@ -100,12 +95,13 @@ class HdrDynamicFeatureHelper(private val context: Context) {
             // List HDR files from the assets
             assetManager.list("hdri_4k")?.let { files ->
                 files.filter { it.endsWith(".hdr", ignoreCase = true) }.forEach { file ->
-                    // Use content provider to access the files
-                    val authority = "${context.packageName}"
-                    hdrFiles.add("content://$authority.hdr_assets/hdri_4k/$file")
+                    // Use our content provider to access the files
+                    val authority = "${context.packageName}.hdrprovider"
+                    hdrFiles.add("content://$authority/hdri_4k/$file")
                 }
             }
 
+            Log.d("HdrDynamicFeatureHelper", "Found ${hdrFiles.size} HDR files in dynamic module")
             hdrFiles
         } catch (e: Exception) {
             Log.e("HdrDynamicFeatureHelper", "Error accessing dynamic module assets", e)
